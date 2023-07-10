@@ -1,0 +1,2 @@
+this is just basic project to check how communication occures.
+I have created two fake services i.e. I have not used any database.after creating two fake services I have ragisteres them on eureka and I have make commnunication in between them.

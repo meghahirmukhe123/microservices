@@ -1,0 +1,2 @@
+I have created 3 services with their communication 
+getting all data at a time of all users

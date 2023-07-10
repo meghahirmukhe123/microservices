@@ -1,0 +1,40 @@
+server:
+  port: 4006
+  
+spring:
+  application:
+    name: API-GATEWAY
+    
+    
+  cloud:
+    gateway:
+      routes:
+      - id: HOUSE-SERVICE
+        uri: lb://HOUSE-SERVICE
+        predicates:
+        - Path= /house/**
+        
+      - id: OWNER-SERVICE 
+        uri: lb://OWNER-SERVICE 
+        predicates:
+        - Path= /owner/** ,/owner/ownerId/**,/owner/houseId/**,/owner/renterId/**
+        
+      - id: RENTER-SERVICE  
+        uri: lb://RENTER-SERVICE  
+        predicates:
+        - Path= /renter/** ,/renter/renterid/**
+        
+        
+   
+        
+ 
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      
+      

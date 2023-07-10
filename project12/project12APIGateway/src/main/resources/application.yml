@@ -1,0 +1,43 @@
+server:
+  port: 1205
+spring:
+  application:
+    name: API-GATEWAY
+    
+    
+  cloud:
+    gateway:
+      routes:
+      - id: SCHOOL-SERVICE
+        uri: lb://SCHOOL-SERVICE
+        predicates:
+        - Path= /school/**
+          
+          
+      - id: TEACHER-SERVICE
+        uri: lb://TEACHER-SERVICE
+        predicates:
+        - Path= /teacherGrp/**,/teacherGrp/teacherId/**,/teacherGrp/schoolId/**,/teacherGrp/studentId/**
+        
+        
+      - id: STUDENTDATA-SERVICE
+        uri: lb://STUDENTDATA-SERVICE
+        predicates:
+        - Path= /studata/**,/studata/resultid/**,/studata/schoolid/**,/studata/teachergrpid/**,/studata/stuId/**
+        
+      - id: SCHOOLRESULT-SERVICE
+        uri: lb://SCHOOLRESULT-SERVICE
+        predicates:
+        - Path= /schoolResult/**,/schoolResult/stuId/**,/schoolResult/resultId/**,/schoolResult/schoolId/**,/schoolResult/teacherId/**
+  
+ 
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+      
+      

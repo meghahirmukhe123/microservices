@@ -1,0 +1,1 @@
+trying put,post,delete methods using feign client

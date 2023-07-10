@@ -1,0 +1,1 @@
+communicating all 3 services by feign client and get all service data of all users at a time

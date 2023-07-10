@@ -1,0 +1,5 @@
+-created 4 services with their communication
+-registered them on eureka server
+-first connected 2 services
+-then connected 3 services
+-then connected 4 services

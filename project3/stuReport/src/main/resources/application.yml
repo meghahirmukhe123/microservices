@@ -1,0 +1,44 @@
+#server:
+#  port: 8002
+#  
+#spring:
+#  data:
+#    mongodb:
+#      database: stureport
+#      host: localhost
+#  application:
+#    name: STUDENTREPORT_SERVICE
+#      
+#
+#
+#
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#    fetch-registry: true
+#    register-with-eureka: true
+#  instance:
+#    prefer-ip-address: true
+#    hostname: localhost
+
+server:
+  port: 8002
+
+spring:
+  data:
+    mongodb:
+      database: stureport
+      host: localhost
+  application:
+    name: STUDENTREPORT-SERVICE
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true

@@ -1,0 +1,9 @@
+server:
+  port: 8086
+  
+spring:
+  main:
+    banner-mode: off
+    
+  application:
+    name: user-service

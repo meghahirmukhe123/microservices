@@ -1,0 +1,1 @@
+I have created two services 1.user 2.rating.I have used mongodb database here and made their comminication i.e. getting all user data and rating data by user id.
