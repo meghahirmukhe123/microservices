@@ -1,0 +1,170 @@
+//difference between application.properties file and appliaction.yml file
+-in application.properties we have to write configuration in key value pair and in appliaction.yml we write configuration in tree format.
+
+#what is microsevices
+-It is architectural style,an application as a collection of services that are
+loosely coupled and independently deployable.
+
+#Advantages of microservices
+1.Loosely coupled
+2.independently deployable
+3.Independent development
+4.Dynamic Scaling.
+
+-All web services can be said API but all API cant be said web services.
+-There are 2 types of web services
+ 1.SOAP(simple object access protocol)
+-get response in XML format only.
+ 2.REST(representational state transfer)
+-can get response in form of xml,json,plan text
+
+#Webservice
+-Two system which are written in different language but still can communucate with each other called webservice.
+
+#Disadvantages of monolithic technology
+ 1.as project scale it becomes difficult to manage
+ 2.for single change redeployment of whole application is needed
+ 3.difficult to adapt new technology for single functionality
+ 4.single bug may down whole appliaction
+
+#Hystrix dashboard
+-It is fault tolerance library.
+-If one of the service gets down how to handle that it is seen by hystrix library.
+
+-In Eureka server we register all our services. i.e. we register our microservices on ureka server.
+-Eureka server itself is a microservice.
+-Whatever service we registered in eureka that is called "eureka client".
+Eureka client is also a microservices.
+-Bydefault port number of eureka server is: 8761
+
+_____________________________________________________________________________________________________________________________________________________________
+-with the help of rest template we can call another service/we can call url of another service  synchronously.
+
+-OKTA Auth
+ -is used to give authentication to microservices.
+ -this is 3rd party service.
+______________________________________________________________________________________________________________________________________________________________________
+-@Transient
+  -this annotations shows whatever written below this annotation is not to store in database.
+ ex: 
+ @Transient
+public List<rating> mylist;
+ =>here trasient shows not to store mylist in database.
+
+_____________________________________________________________________________________________________________________________________________________________________
+-@EnableEurekaServer
+  -when we use @EnableEurekaServer this annotation all remaining services get registered with that service on what we have use this annotation.
+______________________________________________________________________________________________________________________________________________________________________
+
+In addition to RestTemplate, which is a commonly used library for making RESTful API calls, there are several other ways to call another service in a microservices architecture. Here are some additional methods:
+
+1] WebClient (Spring WebFlux): WebClient is a non-blocking, reactive HTTP client introduced in Spring WebFlux. It provides a more efficient and scalable approach for making HTTP calls in asynchronous, non-blocking scenarios. WebClient supports both synchronous and asynchronous request/response interactions.
+
+2] Feign: Feign is a declarative web service client developed by Netflix. It simplifies the creation of REST clients by allowing developers to write HTTP requests as interface methods. Feign integrates with service discovery tools like Eureka and provides load balancing capabilities through Ribbon.
+
+3] gRPC: gRPC is a high-performance, open-source framework developed by Google for building efficient, cross-platform remote procedure call (RPC) systems. It uses Protocol Buffers as the interface definition language and supports bi-directional streaming, authentication, and flow control.
+
+4] AMQP (Advanced Message Queuing Protocol): AMQP is a messaging protocol that enables asynchronous communication between services using message queues. Services can produce and consume messages from queues, providing reliable and scalable communication. Popular AMQP implementations include RabbitMQ and Apache Kafka.
+
+5] GraphQL: GraphQL is a query language and runtime for APIs that allows clients to request specific data requirements and shape the response. It provides a more flexible and efficient way of fetching data by reducing over-fetching and under-fetching. GraphQL APIs can be implemented using libraries like Apollo or graphql-java.
+
+6] WebSocket: WebSocket is a communication protocol that provides full-duplex communication channels over a single TCP connection. It allows real-time, bidirectional communication between a client and a server. WebSockets are suitable for scenarios where real-time updates or continuous streaming of data is required.
+
+7] RestTemplate : used in case of Spring Framework
+
+These are just a few examples of the different ways to call another service in a microservices architecture. The choice of method depends on the specific requirements, technologies, and frameworks being used in your application.
+
+#imp depedencies
+ 1.cloudBootStrap
+ 2.Eureka discovery client
+ 3.euerka server
+ 
+
+_______________________________________________________________________________________________________________________________________________________________________
+
+//Feign Client
+  -The feign is a declarative HTTP web client developed by         
+   NetFlix.
+ - feign is also a part of spring cloud.
+
+#imp dependacy 
+1.OpenFeign
+_______________________________________________________________________________________________________________________________________________________________________
+
+//API gateway
+ -it is common for all services.
+ -client will call API gate way and API gate way will call service url as per client need.
+
+#imp dependacy 
+1.cloud bootstrap
+2.gateway
+3.lombok
+4.spring reactive web
+5.eureka discovery client.
+
+//configuration of API gate way
+spring:
+  application:
+    name: API-GATEWAY
+
+eureka.client.service-url.defaultZone = http://localhost:8761/eureka
+    
+    
+  cloud:
+    gateway:
+      routes:
+      - id: HOUSE-SERVICE
+        uri: lb://HOUSE-SERVICE
+        predicates:
+        - Path= /house/**
+
+
+_______________________________________________________________________________________________________________________________________________________________________
+
+//Config Server
+-it provides client server architecture.
+-till date we have created all local configuration.means we have added all configuration in our services itself.
+-with the help of server architecture which is provided by config server we can externilized local configuration.
+i.e. we can sent local configuration outside i.e. on server or on cloud.
+-we can write configuration in server or cloud which is common for many services.
+ex:eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+ this is common for all services so we can write this in server or in cloud,git hub account.
+
+_____________________________________________________________________________________________________________________________________________________________________
+
+//fault talerance
+-if one if service get down to handle that fault we can use
+  1.Hystrix library
+  2.Resilience4j (R.4J)
+
+#imp dependacy 
+1.actuator
+2.aop(Aspect-Oriented Programming)(When you include the Spring Boot AOP dependency in your Maven project, you gain access to the AOP-related features provided by the Spring Framework. These features)
+3.resilience4j spring-boot
+
+#Retry
+-this is module of resilience4j
+-we can send request to another service again and again is called retry.
+
+#Rate Limiter
+-we can give me limitations to our services.
+-if someone is sending accessing request to service more than limit service may get down that's why we need rate limiter.
+-we apply rate limiter for performance and for security purpose. 
+  
+   //Jmeter-to check rate limiter working we send bulk request in jmeter.
+
+
+-swagger
+____________________________________________________________________________________________________________________________________________________________________
+
+InMemoryUserDetails manager is a implementation class of UserDetailsService.
+
+
+
+
+
+
+
